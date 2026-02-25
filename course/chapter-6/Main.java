@@ -30,7 +30,7 @@ public class Main {
       total += age;
     }
 
-    System.out.println("The average age of all the dinosaurs is : " + total / dinoAges.length);
+    System.out.println("The average age of all the dinosaurs is : " + total / dinoAges.length + "years-old");
     ;
   }
 
