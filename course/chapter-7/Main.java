@@ -9,6 +9,7 @@ public class Main {
   int[] dinoAges = new int[10];
   int[] dinoWeights = new int[10];
   int dinoCount = 0;
+  int visitors = 0;
 
   public static void main(String args[]) {
 
@@ -42,12 +43,17 @@ public class Main {
         checkParkHours();
         break;
       case 3:
+        greetGuest();
         break;
       case 4:
+        checkVisitorsCount();
         break;
       case 5:
+        manageStaff();
         break;
       case 6:
+        System.out.println("Exiting...");
+        System.exit(0);
         break;
 
       default:
@@ -83,5 +89,19 @@ public class Main {
     } else {
       System.out.println("The park is closed!");
     }
+  }
+
+  public void greetGuest() {
+    System.out.println("Hello traveler, welcome to Mesozoic Eden");
+    System.out.println("Our great " + dinoCount + " Dinosaurs are waiting for you");
+    visitors++;
+  }
+
+  public void checkVisitorsCount() {
+    System.out.println("We have " + visitors + " adventurer visitors");
+  }
+
+  public void manageStaff() {
+    System.out.println("Managing staff...");
   }
 }
