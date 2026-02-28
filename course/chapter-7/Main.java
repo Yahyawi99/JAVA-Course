@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.time.LocalTime;
 
 public class Main {
 
@@ -35,8 +36,10 @@ public class Main {
   public void resolveOption(int option) {
     switch (option) {
       case 1:
+        addDinosaur();
         break;
       case 2:
+        checkParkHours();
         break;
       case 3:
         break;
@@ -50,6 +53,35 @@ public class Main {
       default:
         System.out.println("Invalid choice!");
         break;
+    }
+  }
+
+  // Menu actions
+  public void addDinosaur() {
+    if (dinoCount >= 10) {
+      System.out.println("The park is full");
+      return;
+    }
+
+    scanner.nextLine();
+    System.out.println("Enter dinosaur name: ");
+    dinoNames[dinoCount] = scanner.nextLine();
+    System.out.println("Enter dinosaur age: ");
+    dinoAges[dinoCount] = scanner.nextInt();
+    System.out.println("Enter dinosaur weight: ");
+    dinoWeights[dinoCount] = scanner.nextInt();
+    dinoCount++;
+
+    System.out.println(dinoNames[dinoCount - 1] + " has been added to the park!");
+  }
+
+  public void checkParkHours() {
+    int currentHour = LocalTime.now().getHour();
+
+    if (currentHour >= 8 && currentHour <= 6) {
+      System.out.println("The park is open!");
+    } else {
+      System.out.println("The park is closed!");
     }
   }
 }
