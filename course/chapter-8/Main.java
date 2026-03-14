@@ -77,6 +77,8 @@ class Park {
   boolean isOpen;
   Employee[] employees = new Employee[100];
   Dinosaur[] dinosaurs = new Dinosaur[50];
+  int dinoCount = 0;
+  int empCount = 0;
 
   public Park(String name, boolean isOpen) {
     this.name = name;
@@ -99,18 +101,78 @@ class Park {
     this.isOpen = isOpen;
   }
 
-  public void addDinosaur() {
+  public void addDinosaur(Dinosaur d) {
+    if (dinoCount < dinosaurs.length) {
+      dinosaurs[dinoCount++] = d;
+      System.out.println("Dinosaur added successfully.");
+      ;
+    } else {
+      System.out.println("Park is full of dinosaurs!");
+    }
   }
 
-  public void removeDinosaur() {
+  public void removeDinosaur(String dinoName) {
+    for (int i = 0; i < dinosaurs.length; i++) {
+      if (dinosaurs[i].getName().equalsIgnoreCase(dinoName)) {
+        dinosaurs[i] = dinosaurs[dinoCount - 1];
+        dinosaurs[dinoCount - 1] = null;
+        dinoCount--;
+        System.out.println("Dinosaur removed.");
+        return;
+      }
+    }
+    System.out.println("Dinosaur not found.");
+
   }
 
+  public void addEmployee(Employee e) {
+    if (empCount < employees.length) {
+      employees[empCount++] = e;
+    }
+  }
+
+  public void removeEmployee(String name) {
+    for (int i = 0; i < empCount; i++) {
+      if (employees[i].getName().equalsIgnoreCase(name)) {
+        employees[i] = employees[empCount - 1];
+        employees[empCount--] = null;
+        return;
+      }
+    }
+  }
+
+  public void displayDinosaurs() {
+    for (int i = 0; i < dinoCount; i++) {
+      System.out.println(
+          dinosaurs[i].getName() + " - " +
+              dinosaurs[i].getSpecies() + " - Age: " +
+              dinosaurs[i].getAge());
+    }
+  }
+
+  public void displayEmployees() {
+    for (int i = 0; i < empCount; i++) {
+      System.out.println(
+          employees[i].getName() + " - " +
+              employees[i].getJobTitle() + " - years of experience: " +
+              employees[i].getYearsOfExperience());
+    }
+  }
 }
 
 class Guest {
+  String name;
+  int ticketNumber;
+
+  public Guest(String name, int ticketNumber) {
+    this.name = name;
+    this.ticketNumber = ticketNumber;
+  }
 }
 
 public class Main {
+  Park park = new Park("Mesozoic Eden park", true);
+
   Scanner scanner = new Scanner(System.in);
 
   public static void main(String[] args) {
@@ -140,16 +202,16 @@ public class Main {
   public void handleMenuChoice(int choice) {
     switch (choice) {
       case 1:
-        // manageDinosaurs();
+        manageDinosaurs();
         break;
       case 2:
-        // manageEmployees();
+        manageEmployees();
         break;
       case 3:
         // manageTickets();
         break;
       case 4:
-        // checkParkStatus();
+        checkParkStatus();
         break;
       case 5:
         // handleSpecialEvents();
@@ -158,5 +220,25 @@ public class Main {
         System.out.println("Exiting...");
         System.exit(0);
     }
+  }
+
+  // Methods
+  public void manageDinosaurs() {
+    System.out.println("1. Add Dinosaur");
+    System.out.println("2. Remove Dinosaur");
+    System.out.println("3. View Dinosaurs");
+  }
+
+  public void manageEmployees() {
+    System.out.println("1. Add Employee");
+    System.out.println("2. Remove Employee");
+    System.out.println("3. View Employees");
+  }
+
+  public void checkParkStatus() {
+    System.out.println("Park Name: " + park.getName());
+    System.out.println("Open: " + park.getIsOpen());
+    System.out.println("Total Dinosaurs: " + park.dinoCount);
+    System.out.println("Total Employees: " + park.empCount);
   }
 }
