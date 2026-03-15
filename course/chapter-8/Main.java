@@ -170,6 +170,9 @@ class Guest {
   }
 }
 
+record Person(String name, int age) {
+}
+
 public class Main {
   Park park = new Park("Mesozoic Eden park", true);
   Scanner scanner = new Scanner(System.in);
@@ -177,6 +180,8 @@ public class Main {
   public static void main(String[] args) {
     Main main = new Main();
     main.start();
+
+    Person p1 = new Person("YY", 26);
   }
 
   public void start() {
