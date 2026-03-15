@@ -172,7 +172,6 @@ class Guest {
 
 public class Main {
   Park park = new Park("Mesozoic Eden park", true);
-
   Scanner scanner = new Scanner(System.in);
 
   public static void main(String[] args) {
@@ -227,12 +226,17 @@ public class Main {
     System.out.println("1. Add Dinosaur");
     System.out.println("2. Remove Dinosaur");
     System.out.println("3. View Dinosaurs");
+
+    // scan the sub choice and call the appropriate park method
   }
 
   public void manageEmployees() {
     System.out.println("1. Add Employee");
     System.out.println("2. Remove Employee");
     System.out.println("3. View Employees");
+
+    // scan the sub choice and call the appropriate park method
+
   }
 
   public void checkParkStatus() {
